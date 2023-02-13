@@ -58,8 +58,10 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 Src/system_stm32f4xx.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT.c \
 Middlewares/Third_Party/SEGGER/SEGGER_RTT_printf.c \
 Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_GCC.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_KEIL.c \
 Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_IAR.c \
 Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_SES.c \
 Middlewares/Third_Party/SEGGER/SEGGER_SYSVIEW_Config_FreeRTOS.c \
@@ -78,8 +80,8 @@ Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32f407xx.s
-
+startup_stm32f407xx.s \
+SEGGER_RTT_ASM_ARMv7M.s \
 
 #######################################
 # binaries
