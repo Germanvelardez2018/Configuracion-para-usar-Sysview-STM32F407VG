@@ -21,24 +21,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "api.h"
-/* Private includes ----------------------------------------------------------*/
-/* USER CODE BEGIN Includes */
-
-/* USER CODE END Includes */
-
-/* Private typedef -----------------------------------------------------------*/
-/* USER CODE BEGIN PTD */
-
-/* USER CODE END PTD */
-
-/* Private define ------------------------------------------------------------*/
-/* USER CODE BEGIN PD */
-/* USER CODE END PD */
-
-/* Private macro -------------------------------------------------------------*/
-/* USER CODE BEGIN PM */
-
-/* USER CODE END PM */
+#include <SEGGER_SYSVIEW.h>
 
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;

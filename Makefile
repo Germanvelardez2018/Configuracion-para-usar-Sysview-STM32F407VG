@@ -58,6 +58,13 @@ Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_tim_ex.c \
 Src/system_stm32f4xx.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_printf.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_GCC.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_IAR.c \
+Middlewares/Third_Party/SEGGER/SEGGER_RTT_Syscalls_SES.c \
+Middlewares/Third_Party/SEGGER/SEGGER_SYSVIEW_Config_FreeRTOS.c \
+Middlewares/Third_Party/SEGGER/SEGGER_SYSVIEW_FreeRTOS.c \
+Middlewares/Third_Party/SEGGER/SEGGER_SYSVIEW.c \
 Middlewares/Third_Party/FreeRTOS/Source/croutine.c \
 Middlewares/Third_Party/FreeRTOS/Source/event_groups.c \
 Middlewares/Third_Party/FreeRTOS/Source/list.c \
@@ -131,6 +138,7 @@ C_INCLUDES =  \
 -IMiddlewares/Third_Party/FreeRTOS/Source/include \
 -IMiddlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS \
 -IMiddlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F \
+-IMiddlewares/Third_Party/SEGGER \
 -IDrivers/CMSIS/Device/ST/STM32F4xx/Include \
 -IDrivers/CMSIS/Include
 
