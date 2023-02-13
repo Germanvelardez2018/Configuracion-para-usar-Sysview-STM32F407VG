@@ -36,6 +36,7 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
+Src/api.c \
 Src/main.c \
 Src/freertos.c \
 Src/stm32f4xx_it.c \

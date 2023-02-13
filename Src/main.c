@@ -18,8 +18,9 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "cmsis_os.h"
-
+#include "FreeRTOS.h"
+#include "task.h"
+#include "api.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -42,7 +43,6 @@
 /* Private variables ---------------------------------------------------------*/
 TIM_HandleTypeDef htim2;
 
-osThreadId defaultTaskHandle;
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -51,7 +51,6 @@ osThreadId defaultTaskHandle;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
-void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
 
@@ -68,70 +67,56 @@ void StartDefaultTask(void const * argument);
   */
 int main(void)
 {
-  /* USER CODE BEGIN 1 */
-
-  /* USER CODE END 1 */
-
+// some common variables to use for each task
+	// 128 * 4 = 512 bytes
+	//(recommended min stack size per task)
+	const static uint32_t stackSize = 48;
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
-
-  /* USER CODE END Init */
-
+ 
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
-
-  /* USER CODE END SysInit */
+ 
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
+ 
+ uint8_t error = 0;
 
-  /* USER CODE END 2 */
+ if(xTaskCreate(TaskA, "taskA", stackSize, NULL, tskIDLE_PRIORITY + 2, NULL) != pdPASS){
+    HAL_GPIO_WritePin(LEDRED_GPIO_Port,LEDRED_Pin,1);
+   // error = 1;
+ }
+ 
+ if(xTaskCreate(TaskB, "taskB", stackSize, NULL, tskIDLE_PRIORITY + 1, NULL) != pdPASS){
+    HAL_GPIO_WritePin(LEDRED_GPIO_Port,LEDRED_Pin,1);
+   // error = 1;
+ }
+ 
+ if(xTaskCreate(TaskC, "taskC", stackSize, NULL, tskIDLE_PRIORITY + 1, NULL) != pdPASS){
+    HAL_GPIO_WritePin(LEDRED_GPIO_Port,LEDRED_Pin,1);
+    error = 1;
+ }
+ 
 
-  /* USER CODE BEGIN RTOS_MUTEX */
-  /* add mutexes, ... */
-  /* USER CODE END RTOS_MUTEX */
+if(!error) vTaskStartScheduler();
 
-  /* USER CODE BEGIN RTOS_SEMAPHORES */
-  /* add semaphores, ... */
-  /* USER CODE END RTOS_SEMAPHORES */
 
-  /* USER CODE BEGIN RTOS_TIMERS */
-  /* start timers, add new ones, ... */
-  /* USER CODE END RTOS_TIMERS */
-
-  /* USER CODE BEGIN RTOS_QUEUES */
-  /* add queues, ... */
-  /* USER CODE END RTOS_QUEUES */
-
-  /* Create the thread(s) */
-  /* definition and creation of defaultTask */
-  //osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
-  //defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
-
-  /* USER CODE BEGIN RTOS_THREADS */
-  /* add threads, ... */
-  /* USER CODE END RTOS_THREADS */
-
-  /* Start scheduler */
-  //osKernelStart();
 
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    /* USER CODE END WHILE */
-  HAL_GPIO_TogglePin(LEDBLUE_GPIO_Port,LEDBLUE_Pin);
-  HAL_Delay(500);
-    /* USER CODE BEGIN 3 */
+      /* USER CODE END WHILE */
+    HAL_GPIO_TogglePin(LEDBLUE_GPIO_Port,LEDBLUE_Pin);
+    HAL_Delay(500);
+      /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
