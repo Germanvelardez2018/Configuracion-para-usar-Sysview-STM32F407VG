@@ -22,6 +22,6 @@
 
  <h4 align="center">Diagrama simple del sistema</h4>
  <div align="center" >
-<img  src="img/systemview.png" border="1px" 
+<img  src="imgs/systemview.png" border="1px" 
      height="320px" width="720px"/>
 </div>
